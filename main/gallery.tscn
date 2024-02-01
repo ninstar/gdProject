@@ -61,11 +61,12 @@ vertical_alignment = 1
 [node name="Logo" type="TextureRect" parent="UI/Start/Box"]
 layout_mode = 2
 texture = ExtResource("2_abw7f")
+stretch_mode = 3
 
 [node name="Hint" type="Label" parent="UI/Start/Box"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Click on the ☰ button to select a demo."
+text = "Click the ☰ button to select an example scene."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -78,6 +79,7 @@ theme_override_constants/separation = 0
 [node name="Menu" type="MenuButton" parent="UI/Header"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+tooltip_text = "Example scenes"
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_bm0e5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")

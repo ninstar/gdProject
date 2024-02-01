@@ -23,7 +23,7 @@
 class_name StateMachine extends Node
 
 
-## A node used to manage and process logic on [StateNode].
+## A node used to manage and process logic on a [StateNode].
 ## 
 ## [b]StateMachine[/b] can be used to manage and process logic on different
 ## StateNodes at will, at least one [StateNode] is needed to use this node.
