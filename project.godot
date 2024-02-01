@@ -1,0 +1,36 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="gdProject"
+config/description="A collection of add-ons and utilities for Godot."
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nine_patch_sprite_2d/plugin.cfg", "res://addons/range_container/plugin.cfg", "res://addons/remote_container/plugin.cfg", "res://addons/resource_overrider/plugin.cfg", "res://addons/state_machine_nodes/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
+
+[internationalization]
+
+locale/translation_remaps={}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.172549, 0.172549, 0.172549, 1)
