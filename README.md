@@ -32,4 +32,4 @@ Most example scenes are self-contained and can be easily transferred to any proj
 
 - **Code & Resources** - NinStar
 
-[home]: ninstars.blogspot.com/p/gdproject.html
+[home]: https://ninstars.blogspot.com/p/gdproject.html
