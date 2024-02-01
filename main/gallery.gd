@@ -1,7 +1,7 @@
 extends Node
 
 
-const LIST := preload("res://examples/list.gd")
+const DEMO := preload("demo.gd")
 
 
 @onready var start: Control = $UI/Start
@@ -13,14 +13,14 @@ var current_demo: Node
 
 
 func _ready() -> void:
-	var title: String = ProjectSettings.get_setting("application/config/name", "")
-	DisplayServer.window_set_title(title)
+	var window_title: String = ProjectSettings.get_setting("application/config/name", "")
+	DisplayServer.window_set_title(window_title)
 	
 	var popup: PopupMenu = menu.get_popup()
 	popup.index_pressed.connect(_on_menu_index_pressed)
-	var list := LIST.new()
+	var demos := DEMO.new()
 	var index: int = 0
-	for dict: Dictionary in list.get_list():
+	for dict: Dictionary in demos.get_list():
 		popup.add_icon_item(load(dict.get(&"icon", null)), dict.get(&"title", ""), index)
 		popup.set_item_metadata(index, dict.get(&"path", ""))
 		index += 1

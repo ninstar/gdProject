@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpsif74mjwqj8"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_bhmee"]
-[ext_resource type="Texture2D" uid="uid://cd8fgy1l2gdbk" path="res://logo.svg" id="2_4b8mq"]
-[ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://icon.svg" id="3_aeb6u"]
+[ext_resource type="Script" path="res://main/gallery.gd" id="1_hhu0m"]
+[ext_resource type="Texture2D" uid="uid://cd8fgy1l2gdbk" path="res://main/logo.svg" id="2_abw7f"]
+[ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://main/icon.svg" id="3_3a24k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0e5"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -22,7 +22,7 @@ bg_color = Color(0, 0, 0, 0.25098)
 corner_radius_bottom_right = 8
 
 [node name="Main" type="Node"]
-script = ExtResource("1_bhmee")
+script = ExtResource("1_hhu0m")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 128
@@ -60,7 +60,7 @@ vertical_alignment = 1
 
 [node name="Logo" type="TextureRect" parent="UI/Start/Box"]
 layout_mode = 2
-texture = ExtResource("2_4b8mq")
+texture = ExtResource("2_abw7f")
 
 [node name="Hint" type="Label" parent="UI/Start/Box"]
 layout_mode = 2
@@ -98,7 +98,7 @@ visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_aeb6u")
+texture = ExtResource("3_3a24k")
 expand_mode = 1
 
 [node name="Title" type="Label" parent="UI/Header/Demo/Box"]

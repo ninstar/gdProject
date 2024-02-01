@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://blh6r78yy4n4x"]
 
 [ext_resource type="Script" path="res://addons/range_container/range_container.gd" id="1_keqt5"]
-[ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://icon.svg" id="2_8du0b"]
+[ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://main/icon.svg" id="2_8du0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1etd"]
 content_margin_left = 16.0
