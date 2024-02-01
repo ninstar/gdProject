@@ -10,7 +10,7 @@ git clone https://github.com/ninstar/gdProject.git
 
 ## Add-ons
 
-- <img src="./addons/nine_patch_sprite_2d/nine_patch_sprite_2d.svg" alt="Icon" width="14px"> **[NinePatch2D](./addons/nine_patch_sprite_2d)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
+- <img src="./addons/nine_patch_sprite_2d/nine_patch_sprite_2d.svg" alt="Icon" width="14px"> **[NinePatchSprite2D](./addons/nine_patch_sprite_2d)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
 - <img src="./addons/range_container/range_container.svg" alt="Icon" width="14px"> **[RangeContainer](./addons/range_container)** - A ScrollContainer that can be controlled by external Range nodes.
 - <img src="./addons/remote_container/remote_container.svg" alt="Icon" width="14px"> **[RemoteContainer](./addons/remote_container)** - RemoteContainer pushes its own transform to another Control derived node in the scene.
 - <img src="./addons/resource_overrider/resource_overrider.svg" alt="Icon" width="14px"> **[ResourceOverrider](./addons/resource_overrider)** - A node that replaces Resources on-the-fly using suffixes.
