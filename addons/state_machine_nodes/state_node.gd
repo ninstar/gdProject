@@ -27,10 +27,10 @@ class_name StateNode extends Node
 ##
 ## StateNodes can be used to encapsulate and organize complex logic,
 ## they are managed and ran by StateMachines.[br][br]
-## [b]StateNodes[/b] are automatically assigned by a valid [StateMachine] 
+## [b]StateNodes[/b] are automatically assigned by a [StateMachine] 
 ## during initialization as long as the node is a child or grandchild
-## of the StateMachine. Once initialized, the StateNode will share the same
-## [code]owner[/code] as [member StateMachine.state_owner].
+## of the StateMachine. Once initialized, the StateNode will have its
+## [code]owner[/code] set to [member StateMachine.state_owner].
 
 
 var _state_machine: StateMachine
@@ -58,9 +58,9 @@ func exit(new_state: String) -> void:
 ## Called by a [StateMachine] each process frame (idle) with the
 ## time since the last process frame as argument ([param delta], in seconds).
 ## [br][br]
-## Use [param return] to specify the name of the target [b]StateNode[/b] the
-## [StateMachine] shall transition to or an empty string ([code]""[/code])
-## to remain in the current state. Example:
+## Use [param return] to specify the [code]name[/code] of the exit
+## [b]StateNode[/b] or an empty string ([code]""[/code]) to stay in the
+## current state for the next process frame. Example:
 ## [codeblock]
 ## func process_frame(delta):
 ##     # Go to "Jump" state if Up is pressed and skip the rest of this code.
@@ -76,20 +76,16 @@ func process_frame(delta: float) -> String:
 
 
 ## Called by a [StateMachine] each physics frame with the time since
-## the last physics frame as argument ([param delta], in seconds).[br][br]
-## Use [param return] to specify the name of the target [b]StateNode[/b] the
-## [StateMachine] shall transition to or an empty string ([code]""[/code])
-## to remain in the current state (See [method process_frame]).
+## the last physics frame as argument ([param delta], in seconds).
+## (See [method process_frame]).
 @warning_ignore("unused_parameter")
 func process_physics(delta: float) -> String:
 	return ""
 
 
 ## Called by a [StateMachine] when there is an input event.
-## Equivalent to [method Node._input].[br][br]
-## Use [param return] to specify the name of the target [b]StateNode[/b] the
-## [StateMachine] shall transition to or an empty string ([code]""[/code])
-## to remain in the current state (See [method process_frame]).
+## Equivalent to [method Node._input].
+## (See [method process_frame]).
 @warning_ignore("unused_parameter")
 func process_input(event: InputEvent) -> String:
 	return ""
@@ -97,20 +93,18 @@ func process_input(event: InputEvent) -> String:
 
 ## Called by a [StateMachine] when an [InputEvent] hasn't been consumed by
 ## [method Node._input] or any GUI [Control] item.
-## Equivalent to [method Node._unhandled_input].[br][br]
-## Use [param return] to specify the name of the target [b]StateNode[/b] the
-## [StateMachine] shall transition to or an empty string ([code]""[/code])
-## to remain in the current state (See [method process_frame]).
+## Equivalent to [method Node._unhandled_input].
+## (See [method process_frame]).
 @warning_ignore("unused_parameter")
 func process_unhandled_input(event: InputEvent) -> String:
 	return ""
 
 
-## Returns [code]true[/code] if the node is currently being
-## processed by a [StateMachine].
-func is_active() -> bool:
+## Returns [code]true[/code] if the node is the current state of
+## a [StateMachine].
+func is_current_state() -> bool:
 	if is_instance_valid(_state_machine):
-		return _state_machine.processing_node == self
+		return _state_machine._state_node == self
 	else:
 		return false
 

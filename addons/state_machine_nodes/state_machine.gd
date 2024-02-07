@@ -26,12 +26,11 @@ class_name StateMachine extends Node
 ## A node used to manage and process logic on a [StateNode].
 ## 
 ## [b]StateMachine[/b] can be used to manage and process logic on different
-## StateNodes at will, at least one [StateNode] is needed to use this node.
+## StateNodes at time, at least one [StateNode] is needed to use this node.
 ## [br][br]
-## Any StateNodes that are children or grandchildren of this node will be
-## automatically assigned by StateMachine during initilization.
-## Once initialized, the StateNode will share the same [code]owner[/code] as
-## [member state_owner].
+## Any StateNode that is a child or grandchild of a StateMachine will be
+## automatically assigned during initilization and have [member state_owner]
+## set as their [code]owner[/code].
 
 
 ## Emitted when states are changed.
@@ -39,15 +38,15 @@ signal state_changed(old_state: String, new_state: String)
 
 
 ## If [code]true[/code], automates the StateMachine initialization
-## and all StateNode's processing.[br][br]
+## and the processing of the current StateNode.[br][br]
 ## Setting this property to [code]false[/code] can be useful if you want
-## to explicty set the order in which the logic of the StateNodes are processed.
+## to explicty set the order in which each method of a StateNodes is processed.
 @export var automated: bool = true: get = is_automated, set = set_automated
 
 ## The maximum amount of state names the StateMachine will save in its stack.
 @export var max_stack_size: int = 5: get = get_max_stack_size, set = set_max_stack_size
 
-## The name of the state the StateMachine will start on once initialized.
+## The name of the state the StateMachine will enter once initialized.
 @export var initial_state: String = "": get = get_initial_state, set = set_initial_state
 
 ## The owner of all [StateNodes] assigned to this StateMachine.
@@ -58,10 +57,9 @@ var _state_table: Dictionary = {}
 var _state_node: StateNode
 
 
-## Initialize the StateMachine by assigining any existing children and
-## grandchildren [StateNode], initializing them and then entering the
-## [member initial_state] if one is set.[br][br]
-## [b]Note:[/b] This method is called automatically when etering the
+## Assigns and initializes existing children and grandchildren [StateNode]s
+## and enters [member initial_state] if one is set.[br][br]
+## [b]Note:[/b] This method is called automatically when entering the
 ## [SceneTree] if [member automated] is set to [code]true[/code].
 func init() -> void:
 	# Assign state nodes
@@ -79,7 +77,7 @@ func init() -> void:
 		change_state(initial_state)
 
 
-## Assigns a [StateNode] to this [b]StateMachine[/b].[br]
+## Assigns a [StateNode] to this [b]StateMachine[/b].
 ## [member state_owner] will be set as the [code]owner[/code]
 ## of the StateNode.[br][br]
 ## [b]Note:[/b] StateNodes assigned manually are not initialized automatically,
@@ -91,10 +89,10 @@ func assign_state(node: StateNode) -> void:
 		node._state_machine = self
 
 
-## Changes the current [StateNode] to that specified by
-## [param new_state].[br][br]
+## Changes to a different [StateNode] by [code]name[/code]
+## ([param new_state]).[br][br]
 ## This method will first call [method StateNode.exit] on the current node
-## and then call [method StateNode.enter] on the new node.
+## and then call [method StateNode.enter] on the new one.
 func change_state(new_state: String) -> void:
 	var new_node: StateNode = _state_table.get(new_state, null)
 	if not is_instance_valid(new_node):
@@ -120,8 +118,8 @@ func change_state(new_state: String) -> void:
 	state_changed.emit(old_state, new_state)
 
 
-## Returns a list with the names of previous states. 
-## Its maximum size is defined by [member max_stack_size].
+## Returns a list of names of previous states saved in the stack. 
+## The maximum amount of entries is defined by [member max_stack_size].
 func get_state_stack() -> PackedStringArray:
 	return _state_stack
 
@@ -134,23 +132,23 @@ func get_previous_state() -> String:
 	return ""
 
 
-## Returns the [code]name[/code] of the [StateNode] currently being
-## processed by the StateMachine, otherwise returns [code]""[/code].
+## Returns the [code]name[/code] of the current [StateNode] if one exists,
+## otherwise returns [code]""[/code].
 func get_current_state() -> String:
 	if is_instance_valid(_state_node):
 		return _state_node.name
 	return ""
 
 
-## Returns a [StateNode] specified by its name.
+## Returns a [StateNode] by its [code]name[/code] ([param state_name])
+## if one exists, otherwise returns [code]null[/code].
 func get_state_node(state_name: String) -> StateNode:
 	if _state_table.has(state_name):
 		return _state_table[state_name] as StateNode
 	return null
 
 
-## Calls [method StateNode.process_frame] on the [StateNode] currently being
-## processed.[br][br]
+## Calls [method StateNode.process_frame] on the current [StateNode].[br][br]
 ## [b]Note:[/b] This method is called automatically if [member automated]
 ## is set to [code]true[/code].
 func process_frame(delta: float) -> void:
@@ -160,8 +158,7 @@ func process_frame(delta: float) -> void:
 			change_state(new_state)
 
 
-## Calls [method StateNode.process_physics] on the [StateNode] currently being
-## processed.[br][br]
+## Calls [method StateNode.process_physics] on the current [StateNode].[br][br]
 ## [b]Note:[/b] This method is called automatically if [member automated]
 ## is set to [code]true[/code].
 func process_physics(delta: float) -> void:
@@ -171,8 +168,7 @@ func process_physics(delta: float) -> void:
 			change_state(new_state)
 
 
-## Calls [method StateNode.process_input] on the [StateNode] currently being
-## processed.[br][br]
+## Calls [method StateNode.process_input] on the current [StateNode].[br][br]
 ## [b]Note:[/b] This method is called automatically if [member automated]
 ## is set to [code]true[/code].
 func process_input(event: InputEvent) -> void:
@@ -182,8 +178,8 @@ func process_input(event: InputEvent) -> void:
 			change_state(new_state)
 
 
-## Calls [method StateNode.process_unhandled_input] on the [StateNode] currently being
-## processed.[br][br]
+## Calls [method StateNode.process_unhandled_input] on the current
+## [StateNode].[br][br]
 ## [b]Note:[/b] This method is called automatically if [member automated]
 ## is set to [code]true[/code].
 func process_unhandled_input(event: InputEvent) -> void:
@@ -193,22 +189,22 @@ func process_unhandled_input(event: InputEvent) -> void:
 			change_state(new_state)
 
 
-## Used to automatically assign and initialize children and grandchildren
-## StateNodes when they enter the [SceneTree] if [member automated]
-## is set to [code]true[/code].
-func _auto_assign_and_init(node: Node) -> void:
+#region Signals
+
+func __auto_assign_and_init(node: Node) -> void:
 	if node is StateNode:
 		assign_state(node)
 		node.init()
 
-
+#endregion
 #region Virtual methods
 
-func _enter_tree() -> void:
-	if automated:
-		if not is_node_ready():
-			await ready
-		init()
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_ENTER_TREE:
+		if automated:
+			if not is_node_ready():
+				await ready
+			init()
 
 
 func _process(delta: float) -> void:
@@ -256,11 +252,11 @@ func get_state_owner() -> Node:
 func set_automated(value: bool) -> void:
 	automated = value
 	if automated:
-		if not child_entered_tree.is_connected(_auto_assign_and_init):
-			child_entered_tree.connect(_auto_assign_and_init)
+		if not child_entered_tree.is_connected(__auto_assign_and_init):
+			child_entered_tree.connect(__auto_assign_and_init)
 	else:
-		if child_entered_tree.is_connected(_auto_assign_and_init):
-			child_entered_tree.disconnect(_auto_assign_and_init)
+		if child_entered_tree.is_connected(__auto_assign_and_init):
+			child_entered_tree.disconnect(__auto_assign_and_init)
 
 
 func set_max_stack_size(value: int) -> void:

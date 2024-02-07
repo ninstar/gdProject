@@ -70,6 +70,7 @@ func force_update_cache() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_READY:
+		# Notify changes made to the transform of this node
 		set_notify_transform(true)
 		set_notify_local_transform(true)
 	elif(
@@ -77,12 +78,11 @@ func _notification(what: int) -> void:
 			or what == NOTIFICATION_TRANSFORM_CHANGED
 			or what == NOTIFICATION_LOCAL_TRANSFORM_CHANGED
 	):
-		if not is_instance_valid(_remote_node):
+		# Return if there is no valid target
+		if not is_instance_valid(_remote_node) or _remote_node == self:
 			return
 		
-		if _remote_node == self:
-			return
-		
+		# Update properties of the target node
 		if update_size:
 			_remote_node.custom_minimum_size = custom_minimum_size
 			_remote_node.size = size
@@ -102,8 +102,10 @@ func _notification(what: int) -> void:
 		if update_pivot_offset:
 			_remote_node.pivot_offset = pivot_offset
 	elif what == NOTIFICATION_PRE_SORT_CHILDREN:
+		# Apply size flags to child Control nodes
 		for child: Node in get_children():
 			if child is Control:
+				# Skip if Control is top level
 				if not child.is_visible_in_tree() or child.top_level:
 					continue
 				fit_child_in_rect(child, Rect2(Vector2.ZERO, size))

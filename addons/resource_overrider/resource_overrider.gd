@@ -78,8 +78,10 @@ class_name ResourceOverrider extends Node
 func override_resources() -> void:
 	if Engine.is_editor_hint() and not override_on_editor:
 		return
+	
 	var node := get_node_or_null(node_path) as Node
 	if is_instance_valid(node):
+		# Override resources of the specified properties
 		for property: String in override_properties:
 			ResourceOverrider.override_property(node, NodePath(property), override_suffix)
 
@@ -154,7 +156,7 @@ func set_override_properties(value: PackedStringArray) -> void:
 		await ready
 	if override_on_change:
 		override_resources()
-	
+
 
 func set_override_suffix(value: String) -> void:
 	override_suffix = value
@@ -162,7 +164,6 @@ func set_override_suffix(value: String) -> void:
 		await ready
 	if override_on_change:
 		override_resources()
-
 
 
 func set_override_on_change(value: bool) -> void:
