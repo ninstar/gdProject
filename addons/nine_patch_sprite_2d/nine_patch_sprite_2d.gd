@@ -360,7 +360,7 @@ func set_vframes(value: int) -> void:
 
 
 func set_frame(value: int) -> void:
-	frame = clampi(value, 0, hframes + vframes - 1)
+	frame = clampi(value, 0, hframes * vframes - 1)
 	var as_vec := Vector2i(frame % hframes, ceili(frame/hframes))
 	if frame_coords != as_vec:
 		set_frame_coords(as_vec)
