@@ -134,6 +134,23 @@ enum AxisStretchMode {
 ## If [code]true[/code], texture is flipped vertically.
 @export var flip_v: bool = false: get = is_flipped_v, set = set_flip_v
 
+@export_group("Animation")
+
+## The number of columns in the sprite sheet.
+@export var hframes: int = 1: get = get_hframes, set = set_hframes
+
+## The number of rows in the sprite sheet.
+@export var vframes: int = 1: get = get_vframes, set = set_vframes
+
+## Current frame to display from sprite sheet.
+## [member hframes] or [member vframes] must be greater than 1.
+@export var frame: int = 0: get = get_frame, set = set_frame
+
+## Coordinates of the frame to display from sprite sheet.
+## This is as an alias for the [member frame] property.
+## [member hframes] or [member vframes] must be greater than 1.
+@export var frame_coords := Vector2i.ZERO: get = get_frame_coords, set = set_frame_coords
+
 
 ## Returns the size of the margin on the specified [enum @GlobalScope.Side].
 func get_patch_margin(margin: Side) -> int:
@@ -177,6 +194,9 @@ func _notification(what: int) -> void:
 			var trans := Transform2D.IDENTITY
 			var from: Rect2 = region_rect
 			var to := Rect2(Vector2.ZERO, size)
+			
+			# Frame
+			from.position = from.size * Vector2(frame_coords)
 			
 			# Center the rectangle
 			if centered:
@@ -251,6 +271,22 @@ func is_flipped_h() -> bool:
 func is_flipped_v() -> bool:
 	return flip_v
 
+
+func get_hframes() -> int:
+	return hframes
+
+
+func get_vframes() -> int:
+	return vframes
+
+
+func get_frame() -> int:
+	return frame
+
+
+func get_frame_coords() -> Vector2i:
+	return frame_coords
+
 # Setters
 
 func set_texture(value: Texture2D) -> void:
@@ -305,5 +341,39 @@ func set_flip_h(value: bool) -> void:
 func set_flip_v(value: bool) -> void:
 	flip_v = value
 	queue_redraw()
+
+
+func set_hframes(value: int) -> void:
+	hframes = maxi(1, value)
+	if frame > hframes + vframes - 1:
+		set_frame(frame)
+	else:
+		queue_redraw()
+
+
+func set_vframes(value: int) -> void:
+	vframes = maxi(1, value)
+	if frame > hframes + vframes - 1:
+		set_frame(frame)
+	else:
+		queue_redraw()
+
+
+func set_frame(value: int) -> void:
+	frame = clampi(value, 0, hframes + vframes - 1)
+	var as_vec := Vector2i(frame % hframes, ceili(frame/hframes))
+	if frame_coords != as_vec:
+		set_frame_coords(as_vec)
+	else:
+		queue_redraw()
+
+
+func set_frame_coords(value: Vector2i) -> void:
+	frame_coords = value.clamp(Vector2i.ZERO, Vector2i(hframes-1, vframes-1))
+	var as_int: int = frame_coords.x + (frame_coords.y * hframes)
+	if frame != as_int:
+		set_frame(as_int)
+	else:
+		queue_redraw()
 
 #endregion
