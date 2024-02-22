@@ -100,6 +100,7 @@ func play_in_sync(from_position: float = 0.0) -> void:
 	for i: int in audio_players.size():
 		if is_instance_valid(audio_players[i]):
 			audio_players[i].play(from_position)
+	_sync_timer.start(sync_interval)
 	call_deferred(&"sync")
 
 
@@ -119,13 +120,13 @@ func stop_all() -> void:
 	for i: int in audio_players.size():
 		if is_instance_valid(audio_players[i]):
 			audio_players[i].stop()
+	_sync_timer.stop()
 
 #region Virtual methods
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_READY:
 		add_child(_sync_timer)
-		_sync_timer.start(sync_interval)
 		_sync_timer.timeout.connect(sync)
 		
 		for i: int in audio_players.size():
@@ -135,7 +136,9 @@ func _notification(what: int) -> void:
 			if playing:
 				audio_players[i].play()
 		
-		call_deferred(&"sync")
+		if playing:
+			_sync_timer.start(sync_interval)
+			call_deferred(&"sync")
 
 
 func _set(property: StringName, value: Variant) -> bool:
@@ -143,14 +146,13 @@ func _set(property: StringName, value: Variant) -> bool:
 		&"pitch_scale":
 			for i: int in audio_players.size():
 				if is_instance_valid(audio_players[i]):
-					audio_players[i].set_pitch_scale(clampf(value, 0.0, 4.0))
-			call_deferred(&"sync")
+					audio_players[i].set_pitch_scale(clampf(value, 0.00, 4.0))
+			if playing:
+				call_deferred(&"sync")
 		&"stream_paused":
 			for i: int in audio_players.size():
 				if is_instance_valid(audio_players[i]):
 					audio_players[i].set_stream_paused(value)
-			if value == false:
-				call_deferred(&"sync")
 		&"autoplay":
 			for i: int in audio_players.size():
 				if is_instance_valid(audio_players[i]):
@@ -160,11 +162,13 @@ func _set(property: StringName, value: Variant) -> bool:
 				for i: int in audio_players.size():
 					if is_instance_valid(audio_players[i]):
 						audio_players[i].play(get_playback_position())
+				_sync_timer.start(sync_interval)
 				call_deferred(&"sync")
 			else:
 				for i: int in audio_players.size():
 					if is_instance_valid(audio_players[i]):
 						audio_players[i].stop()
+				_sync_timer.stop()
 	return false
 
 #endregion
