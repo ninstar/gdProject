@@ -92,6 +92,34 @@ func sync() -> void:
 		):
 			audio_players[i].seek(playback_position+delta)
 
+
+## Plays the audio and [member audio_player] in sync from the given
+## [param from_position], in seconds.
+func play_in_sync(from_position: float = 0.0) -> void:
+	play(from_position)
+	for i: int in audio_players.size():
+		if is_instance_valid(audio_players[i]):
+			audio_players[i].play(from_position)
+	call_deferred(&"sync")
+
+
+## Sets and synchronizes the position from which audio and
+## [member audio_player] will be played, in seconds.
+func seek_in_sync(to_position: float) -> void:
+	seek(to_position)
+	for i: int in audio_players.size():
+		if is_instance_valid(audio_players[i]):
+			audio_players[i].seek(to_position)
+	call_deferred(&"sync")
+
+
+## Stops the audio and [member audio_player] all at once.
+func stop_all() -> void:
+	stop()
+	for i: int in audio_players.size():
+		if is_instance_valid(audio_players[i]):
+			audio_players[i].stop()
+
 #region Virtual methods
 
 func _notification(what: int) -> void:
@@ -111,6 +139,7 @@ func _notification(what: int) -> void:
 
 
 func _set(property: StringName, value: Variant) -> bool:
+	print("play")
 	match property:
 		&"pitch_scale":
 			for i: int in audio_players.size():
