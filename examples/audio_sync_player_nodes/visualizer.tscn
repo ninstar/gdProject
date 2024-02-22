@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipj2rlobd2ia"]
+
+[ext_resource type="Script" path="res://examples/audio_sync_player_nodes/visualizer.gd" id="1_lg1gg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab0d6"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Visualizer" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 40)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ab0d6")
+script = ExtResource("1_lg1gg")
+
+[node name="Box" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlayerName" type="Label" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AudioStreamPlayer"
+
+[node name="Volume" type="HBoxContainer" parent="Box"]
+layout_mode = 2
+tooltip_text = "Volume"
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Box/Volume"]
+layout_mode = 2
+text = "◢"
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Box/Volume"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Volume"
+max_value = 1.0
+step = 0.01
+
+[node name="Box" type="HBoxContainer" parent="Box"]
+layout_mode = 2
+
+[node name="Playback" type="Label" parent="Box/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-:--"
+
+[node name="Dash" type="Label" parent="Box/Box"]
+layout_mode = 2
+text = "/"
+
+[node name="Duration" type="Label" parent="Box/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-:--"
+
+[connection signal="value_changed" from="Box/Volume/Slider" to="." method="_on_volume_value_changed"]

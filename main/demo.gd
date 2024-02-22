@@ -28,5 +28,10 @@ func get_list() -> Array[Dictionary]:
 		&"icon": "uid://b2rkcs8krybuc",
 		&"path": "state_machine_nodes",
 	},
+	{
+		&"title": "AudioSyncPlayer",
+		&"icon": "uid://cv2yt288ky6gk",
+		&"path": "audio_sync_player_nodes",
+	},
 ]
 
