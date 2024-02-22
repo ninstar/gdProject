@@ -22,5 +22,5 @@ func _on_volume_value_changed(value: float) -> void:
 
 func time_to_string(time: float) -> String:
 	var seconds: float = fmod(time, 60.0)
-	var minutes: float = floorf(seconds / 60.0)
+	var minutes: float = floorf(time / 60.0)
 	return "%s:%s" % [minutes, "%02d" % seconds]
