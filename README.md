@@ -16,6 +16,9 @@ git clone https://github.com/ninstar/gdProject.git
 - <img src="./addons/resource_overrider/resource_overrider.svg" alt="Icon" width="14px"> **[ResourceOverrider](./addons/resource_overrider)** - A node that replaces Resources on-the-fly using suffixes.
 - <img src="./addons/state_machine_nodes/state_machine.svg" alt="Icon" width="14px"> **[StateMachine](./addons/state_machine_nodes)** - A node used to manage and process logic on a StateNode.
   - <img src="./addons/state_machine_nodes/state_node.svg" alt="Icon" width="14px"> **StateNode** - A node that functions as a state for a StateMachine.
+- <img src="./addons/audio_sync_player_nodes/audio_sync_player.svg" alt="Icon" width="14px"> **[AudioSyncPlayer](./addons/audio_sync_player_nodes)** - Plays an audio stream non-positionally while keeping other AudioStreamPlayer in sync.
+	- <img src="./addons/audio_sync_player_nodes/audio_sync_player_2d.svg" alt="Icon" width="14px"> **AudioSyncPlayer2D** - Plays positional sound in 2D space while keeping other AudioStreamPlayer2D in sync.
+	- <img src="./addons/audio_sync_player_nodes/audio_sync_player_3d.svg" alt="Icon" width="14px"> **AudioSyncPlayer3D** - Plays positional sound in 3D space while keeping other AudioStreamPlayer3D in sync.
 
 > Once an add-on is enabled, its documentation can be accessed directly from the IDE (``F1``).
 
