@@ -196,7 +196,7 @@ func _notification(what: int) -> void:
 			var to := Rect2(Vector2.ZERO, size)
 			
 			# Frame
-			from.position = from.size * Vector2(frame_coords)
+			from.position += from.size * Vector2(frame_coords)
 			
 			# Center the rectangle
 			if centered:
