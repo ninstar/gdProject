@@ -85,11 +85,8 @@ func sync() -> void:
 		if not is_instance_valid(audio_players[i]):
 			continue
 		
-		if(
-			audio_players[i].playing and not audio_players[i].stream_paused
-			and absf(playback_position-audio_players[i].get_playback_position()) > desync_threshold
-			and playback_position < audio_players[i].stream.get_length()
-		):
+		var diff: float = absf(playback_position-audio_players[i].get_playback_position())
+		if audio_players[i].playing and diff > desync_threshold:
 			audio_players[i].seek(playback_position+delta)
 
 
@@ -100,8 +97,8 @@ func play_in_sync(from_position: float = 0.0) -> void:
 	for i: int in audio_players.size():
 		if is_instance_valid(audio_players[i]):
 			audio_players[i].play(from_position)
-	_sync_timer.start(sync_interval)
-	call_deferred(&"sync")
+	if sync_interval > 0.0:
+		_sync_timer.start(sync_interval)
 
 
 ## Sets and synchronizes the position from which audio and
@@ -111,7 +108,6 @@ func seek_in_sync(to_position: float) -> void:
 	for i: int in audio_players.size():
 		if is_instance_valid(audio_players[i]):
 			audio_players[i].seek(to_position)
-	call_deferred(&"sync")
 
 
 ## Stops the audio and [member audio_player] all at once.
@@ -137,7 +133,8 @@ func _notification(what: int) -> void:
 				audio_players[i].play()
 		
 		if playing:
-			_sync_timer.start(sync_interval)
+			if sync_interval > 0.0:
+				_sync_timer.start(sync_interval)
 			call_deferred(&"sync")
 
 
@@ -153,6 +150,11 @@ func _set(property: StringName, value: Variant) -> bool:
 			for i: int in audio_players.size():
 				if is_instance_valid(audio_players[i]):
 					audio_players[i].set_stream_paused(value)
+			if value == true:
+				_sync_timer.stop()
+			else:
+				_sync_timer.start(sync_interval)
+				call_deferred(&"sync")
 		&"autoplay":
 			for i: int in audio_players.size():
 				if is_instance_valid(audio_players[i]):
@@ -162,7 +164,8 @@ func _set(property: StringName, value: Variant) -> bool:
 				for i: int in audio_players.size():
 					if is_instance_valid(audio_players[i]):
 						audio_players[i].play(get_playback_position())
-				_sync_timer.start(sync_interval)
+				if sync_interval > 0.0:
+					_sync_timer.start(sync_interval)
 				call_deferred(&"sync")
 			else:
 				for i: int in audio_players.size():
@@ -201,13 +204,12 @@ func set_sync_interval(value: float) -> void:
 	sync_interval = value
 	if not is_node_ready():
 		await ready
-	if sync_interval > 0.0:
-		if _sync_timer.paused:
-			_sync_timer.paused = false
+	if sync_interval > 0.0 and playing:
 		_sync_timer.wait_time = sync_interval
+		_sync_timer.start(sync_interval)
 	else:
-		if not _sync_timer.paused:
-			_sync_timer.paused = true
+		if not _sync_timer.is_stopped():
+			_sync_timer.stop()
 
 
 func set_desync_threshold(value: float) -> void:

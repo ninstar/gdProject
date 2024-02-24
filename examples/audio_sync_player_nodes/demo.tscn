@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8qewsbd3uidy"]
+[gd_scene load_steps=15 format=3 uid="uid://c8qewsbd3uidy"]
 
 [ext_resource type="Script" path="res://examples/audio_sync_player_nodes/demo.gd" id="1_0qy6e"]
 [ext_resource type="PackedScene" uid="uid://ipj2rlobd2ia" path="res://examples/audio_sync_player_nodes/visualizer.tscn" id="1_3ldds"]
@@ -67,6 +67,10 @@ border_width_bottom = 4
 border_color = Color(0, 0, 0, 0.501961)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v34o6"]
+color = Color(0, 0, 0, 0.501961)
+thickness = 2
 
 [node name="Demo" type="Node"]
 script = ExtResource("1_0qy6e")
@@ -146,7 +150,6 @@ text = "Sync interval"
 [node name="SyncInterval" type="SpinBox" parent="Margin/Box/Players/Main/Box/Controls/Box/Options/Interval"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-tooltip_text = "Pitch scale"
 max_value = 4096.0
 step = 0.001
 value = 5.0
@@ -164,7 +167,6 @@ text = "Desync threshold"
 [node name="DesyncThreshold" type="SpinBox" parent="Margin/Box/Players/Main/Box/Controls/Box/Options/Threshold"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-tooltip_text = "Pitch scale"
 min_value = 0.001
 max_value = 4096.0
 step = 0.01
@@ -257,9 +259,37 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0p4vr")
 
-[node name="Log" type="TextEdit" parent="Margin/Box/Log/Container"]
+[node name="Box" type="VBoxContainer" parent="Margin/Box/Log/Container"]
+layout_mode = 2
+
+[node name="Cycle" type="HBoxContainer" parent="Margin/Box/Log/Container/Box"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Box/Log/Container/Box/Cycle"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next cycle"
+
+[node name="Cycle" type="Label" parent="Margin/Box/Log/Container/Box/Cycle"]
 unique_name_in_owner = true
 layout_mode = 2
+text = "0
+"
+
+[node name="S" type="Label" parent="Margin/Box/Log/Container/Box/Cycle"]
+layout_mode = 2
+text = "s"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Box/Log/Container/Box"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxLine_v34o6")
+
+[node name="Log" type="TextEdit" parent="Margin/Box/Log/Container/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
 editable = false
 autowrap_mode = 1
 scroll_smooth = true

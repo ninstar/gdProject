@@ -6,6 +6,7 @@ extends Node
 @onready var play: Button = %Play
 @onready var pause: Button = %Pause
 @onready var log: TextEdit = %Log
+@onready var cycle: Label = %Cycle
 
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	playback.set_value_no_signal(audio_sync_player.get_playback_position())
+	cycle.text = str(audio_sync_player._sync_timer.time_left).pad_decimals(2)
 
 
 func _on_play_pressed() -> void:
