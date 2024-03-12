@@ -1,7 +1,7 @@
 extends "common_state.gd"
 
 
-func enter(_old_state: String) -> void:
+func entered(_previous_state: String) -> void:
 	sprite.play(&"walk")
 
 

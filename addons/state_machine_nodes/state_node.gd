@@ -26,41 +26,41 @@ class_name StateNode extends Node
 ## A node that functions as a state for a [StateMachine].
 ##
 ## StateNodes can be used to encapsulate and organize complex logic,
-## they are managed and ran by StateMachines.[br][br]
-## [b]StateNodes[/b] are automatically assigned by a [StateMachine] 
-## during initialization as long as the node is a child or grandchild
-## of the StateMachine. Once initialized, the StateNode will have its
-## [code]owner[/code] set to [member StateMachine.state_owner].
+## they are managed and ran by StateMachines.
+## [br][br]
+## Any StateNodes that are direct children of a StateMachine will be
+## automatically assigned to it once it enters the [SceneTree].
+## Each StateNode requires its own unique [code]name[/code].
 
 
 var _state_machine: StateMachine
 
 
-## Called when the node is initialized by a [StateMachine].
-func init() -> void:
+## Called by a [StateMachine] once it is ready.
+func state_machine_ready() -> void:
 	pass
 
 
 ## Called by a [StateMachine] when the state is entered.
-## [param old_state] is the name of the previous [b]StateNode[/b].
+## [param previous_state] is the name of the previous [b]StateNode[/b].
 @warning_ignore("unused_parameter")
-func enter(old_state: String) -> void:
+func entered(previous_state: String) -> void:
 	pass
 
 
 ## Called by a [StateMachine] when the state is exited.
-## [param new_state] is the name of the next [b]StateNode[/b].
+## [param next_state] is the name of the next [b]StateNode[/b].
 @warning_ignore("unused_parameter")
-func exit(new_state: String) -> void:
+func exited(next_state: String) -> void:
 	pass
 
 
 ## Called by a [StateMachine] each process frame (idle) with the
 ## time since the last process frame as argument ([param delta], in seconds).
 ## [br][br]
-## Use [param return] to specify the [code]name[/code] of the exit
-## [b]StateNode[/b] or an empty string ([code]""[/code]) to stay in the
-## current state for the next process frame. Example:
+## Use [param return] to specify the [code]name[/code] of the
+## [b]StateNode[/b] to transition to or an empty string ([code]""[/code])
+## to stay in the current state for the next process frame. Example:
 ## [codeblock]
 ## func process_frame(delta):
 ##     # Go to "Jump" state if Up is pressed and skip the rest of this code.
@@ -109,6 +109,22 @@ func is_current_state() -> bool:
 		return false
 
 
-## Returns the [StateMachine] assigned to this node.
-func get_machine() -> StateMachine:
+## Returns the [code]name[/code] of the previous [StateNode] if one
+## exists in the [StateMachine]'s history, otherwise returns [code]""[/code].
+func get_previous_state() -> String:
+	if is_instance_valid(_state_machine):
+		if _state_machine.history.size() > 0:
+			return _state_machine.history[_state_machine.history.size()-1]
+	return ""
+
+
+## Returns the [StateMachine] assigned to this state.
+func get_state_machine() -> StateMachine:
 	return _state_machine
+
+
+## Returns the [member StateMachine.target_node] of the [StateMachine] assigned to this state.
+func get_target() -> Node:
+	if is_instance_valid(_state_machine):
+		return _state_machine.target_node
+	return null

@@ -1,11 +1,11 @@
 extends "common_state.gd"
 
 
-func enter(_old_state: String) -> void:
+func entered(_previous_state: String) -> void:
 	sprite.play(&"idle")
 
 
-func exit(_new_state: String) -> void:
+func exited(_next_state: String) -> void:
 	pass
 
 

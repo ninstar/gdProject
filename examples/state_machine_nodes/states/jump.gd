@@ -4,7 +4,7 @@ extends "common_state.gd"
 const JUMP_VELOCITY = -800.0
 
 
-func enter(_old_state: String) -> void:
+func entered(_previous_state: String) -> void:
 	sprite.play(&"jump")
 	player.velocity.y = JUMP_VELOCITY
 

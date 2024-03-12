@@ -256,11 +256,11 @@ frame_progress = 0.121329
 [node name="Collision" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_sqv6l")
 
-[node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("state_owner")]
+[node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("initial_state", "target_node")]
 script = ExtResource("3_u32ge")
 automated = false
-initial_state = "Idle"
-state_owner = NodePath("..")
+initial_state = NodePath("Idle")
+target_node = NodePath("..")
 
 [node name="Idle" type="Node" parent="Player/StateMachine"]
 script = ExtResource("4_m7thh")
