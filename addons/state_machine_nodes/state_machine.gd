@@ -43,7 +43,7 @@ signal state_changed(previous_state: String, next_state: String)
 @export var automated: bool = true: get = is_automated, set = set_automated
 
 ## The maximum amount of state names the StateMachine will save in its history.
-@export var history_limit: int = 5: get = get_history_limit, set = set_history_limit
+@export_range(0, 255, 1, "or_greater", "suffix: state(s)") var history_limit: int = 1: get = get_history_limit, set = set_history_limit
 
 ## The [StateNode] the StateMachine will enter once it is ready.
 @export var initial_state: StateNode: get = get_initial_state, set = set_initial_state
@@ -277,9 +277,12 @@ func set_state(value: String) -> void:
 			previous_node.exited(next_node.name)
 		
 		# Add to history
-		history.append(previous_node.name)
-		if history.size() > history_limit:
-			history.remove_at(0)
+		if history_limit == 1 and history.size() > 0:
+			history[0] = previous_node.name
+		elif history_limit >= 1:
+			history.append(previous_node.name)
+			if history.size() > history_limit:
+				history.remove_at(0)
 	
 	# Enter new state
 	if not _silent_enter:
