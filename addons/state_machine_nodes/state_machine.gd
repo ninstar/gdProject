@@ -34,7 +34,7 @@ class_name StateMachine extends Node
 
 
 ## Emitted when the state is changed.
-signal state_changed(prevopis_state: String, next_state: String)
+signal state_changed(previous_state: String, next_state: String)
 
 
 ## If [code]true[/code], automates the processing StateNodes.[br][br]
