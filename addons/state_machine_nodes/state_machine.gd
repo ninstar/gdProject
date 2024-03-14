@@ -34,10 +34,10 @@ class_name StateMachine extends Node
 
 
 ## Emitted when the state is changed.
-signal state_changed(previous_state: String, next_state: String)
+signal state_changed(previous_state: String, new_state: String)
 
 
-## If [code]true[/code], automates the processing StateNodes.[br][br]
+## If [code]true[/code], automates the processing of StateNodes.[br][br]
 ## Setting this property to [code]false[/code] can be useful if you want
 ## to explicty set the order in which each method of a [StateNode] is processed.
 @export var automated: bool = true: get = is_automated, set = set_automated

@@ -5,10 +5,6 @@ func entered(_previous_state: String) -> void:
 	sprite.play(&"idle")
 
 
-func exited(_next_state: String) -> void:
-	pass
-
-
 func process_physics(_delta: float) -> String:
 	if player.is_on_floor():
 		if Input.get_axis(&"ui_left", &"ui_right") != 0.0:

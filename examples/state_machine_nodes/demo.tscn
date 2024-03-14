@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cch82w633sb1r"]
+[gd_scene load_steps=26 format=3 uid="uid://cch82w633sb1r"]
 
 [ext_resource type="Script" path="res://examples/state_machine_nodes/player.gd" id="1_3h142"]
 [ext_resource type="Texture2D" uid="uid://bb8hayf3q488j" path="res://examples/state_machine_nodes/sprite.png" id="2_kqjiq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://examples/state_machine_nodes/states/jump.gd" id="6_ysv5g"]
 [ext_resource type="Script" path="res://examples/state_machine_nodes/states/fall.gd" id="7_v58jh"]
 [ext_resource type="Script" path="res://examples/state_machine_nodes/states/crouch.gd" id="8_ive84"]
+[ext_resource type="Script" path="res://examples/state_machine_nodes/history.gd" id="9_4bj88"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omlgw"]
 bg_color = Color(0, 0, 0, 0)
@@ -129,6 +130,28 @@ content_margin_bottom = 4.0
 bg_color = Color(0, 0, 0, 0.501961)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4okr"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wldyn"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+draw_center = false
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
@@ -258,7 +281,7 @@ shape = SubResource("CapsuleShape2D_sqv6l")
 
 [node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("initial_state", "target_node")]
 script = ExtResource("3_u32ge")
-automated = false
+history_limit = 3
 initial_state = NodePath("Idle")
 target_node = NodePath("..")
 
@@ -287,8 +310,45 @@ offset_top = -88.0
 offset_right = 48.0
 offset_bottom = -57.0
 grow_horizontal = 2
+tooltip_text = "Active state"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_hqjar")
 text = "State"
 horizontal_alignment = 1
+
+[node name="History" type="VBoxContainer" parent="." node_paths=PackedStringArray("state_machine")]
+custom_minimum_size = Vector2(192, 164)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_top = -201.0
+offset_right = -31.0
+offset_bottom = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("9_4bj88")
+state_machine = NodePath("../Player/StateMachine")
+metadata/_edit_group_ = true
+
+[node name="Count" type="Label" parent="History"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_a4okr")
+text = "History -/-"
+horizontal_alignment = 3
+
+[node name="Panel" type="PanelContainer" parent="History"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wldyn")
+
+[node name="List" type="TextEdit" parent="History/Panel"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+editable = false
 
 [connection signal="state_changed" from="Player/StateMachine" to="Player" method="_on_state_machine_state_changed"]
