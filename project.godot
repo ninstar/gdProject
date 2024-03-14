@@ -17,6 +17,11 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://main/icon.svg"
 
+[display]
+
+window/size/transparent=true
+window/per_pixel_transparency/allowed=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/audio_sync_player_nodes/plugin.cfg", "res://addons/nine_patch_sprite_2d/plugin.cfg", "res://addons/range_container/plugin.cfg", "res://addons/remote_container/plugin.cfg", "res://addons/resource_overrider/plugin.cfg", "res://addons/state_machine_nodes/plugin.cfg")
@@ -34,3 +39,4 @@ locale/translation_remaps={}
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.172549, 0.172549, 0.172549, 1)
+viewport/transparent_background=true
