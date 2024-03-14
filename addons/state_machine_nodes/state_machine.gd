@@ -56,7 +56,8 @@ signal state_changed(previous_state: String, new_state: String)
 ## The [code]name[/code] of the current [StateNode] of the StateMachine.
 ## Changing this value directly will trigger a state transition
 ## ([method StateNode.enter]/[method StateNode.exit]) if a valid StateNode of
-## the same name is assigned to this StateMachine.
+## the same name is assigned to this StateMachine, otherwise the value stay
+## the same and an error is logged.
 ## [br][br]
 ## For more control over state transitions, check [method change_state].
 var state: String = "": set = set_state, get = get_state
@@ -262,7 +263,7 @@ func set_state(value: String) -> void:
 	var next_node: StateNode = _state_table.get(value, null)
 	
 	if not is_instance_valid(next_node):
-		push_warning("StateMachine: %s not found!" % state)
+		push_error("StateNode not found found: \"%s\"" % value)
 		unmute_transitions.call()
 		return
 	else:
