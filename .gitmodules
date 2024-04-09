@@ -1,0 +1,18 @@
+[submodule ".submodules/range_container"]
+	path = .submodules/range_container
+	url = https://github.com/ninstar/Godot-RangeContainer
+[submodule ".submodules/remote_container"]
+	path = .submodules/remote_container
+	url = https://github.com/ninstar/Godot-RemoteContainer
+[submodule ".submodules/resource_overrider"]
+	path = .submodules/resource_overrider
+	url = https://github.com/ninstar/Godot-ResourceOverrider
+[submodule ".submodules/nine_patch_sprite_2d"]
+	path = .submodules/nine_patch_sprite_2d
+	url = https://github.com/ninstar/Godot-NinePatchSprite2D
+[submodule ".submodules/state_machine_nodes"]
+	path = .submodules/state_machine_nodes
+	url = https://github.com/ninstar/Godot-StateMachineNodes
+[submodule ".submodules/audio_sync_player_nodes"]
+	path = .submodules/audio_sync_player_nodes
+	url = https://github.com/ninstar/Godot-AudioSyncPlayerNodes
