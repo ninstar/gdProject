@@ -2,7 +2,7 @@
 
 # Overview
 
-A collection of add-ons and utilities for Godot 4.x.
+A collection of add-ons for the Godot Engine.
 
 ```bash
 git clone https://github.com/ninstar/gdProject.git
@@ -10,18 +10,15 @@ git clone https://github.com/ninstar/gdProject.git
 
 ## Add-ons
 
-- <img src="./addons/nine_patch_sprite_2d/nine_patch_sprite_2d.svg" alt="Icon" width="14px"> **[NinePatchSprite2D](./addons/nine_patch_sprite_2d)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
-- <img src="./addons/range_container/range_container.svg" alt="Icon" width="14px"> **[RangeContainer](./addons/range_container)** - A ScrollContainer that can be controlled by external Range nodes.
-- <img src="./addons/remote_container/remote_container.svg" alt="Icon" width="14px"> **[RemoteContainer](./addons/remote_container)** - RemoteContainer pushes its own transform to another Control derived node in the scene.
-- <img src="./addons/resource_overrider/resource_overrider.svg" alt="Icon" width="14px"> **[ResourceOverrider](./addons/resource_overrider)** - A node that replaces Resources on-the-fly using suffixes.
-- <img src="./addons/state_machine_nodes/state_machine.svg" alt="Icon" width="14px"> **[StateMachine](./addons/state_machine_nodes)** - A node used to manage and process logic on a StateNode.
-  - <img src="./addons/state_machine_nodes/state_node.svg" alt="Icon" width="14px"> **StateNode** - A node that functions as a state for a StateMachine.
-- <img src="./addons/audio_sync_player_nodes/audio_sync_player.svg" alt="Icon" width="14px"> **[AudioSyncPlayer](./addons/audio_sync_player_nodes)** - Plays an audio stream non-positionally while keeping other AudioStreamPlayer in sync.
-	- <img src="./addons/audio_sync_player_nodes/audio_sync_player_2d.svg" alt="Icon" width="14px"> **AudioSyncPlayer2D** - Plays positional sound in 2D space while keeping other AudioStreamPlayer2D in sync.
-	- <img src="./addons/audio_sync_player_nodes/audio_sync_player_3d.svg" alt="Icon" width="14px"> **AudioSyncPlayer3D** - Plays positional sound in 3D space while keeping other AudioStreamPlayer3D in sync.
+> [!Important]
+> Once an add-on is enabled, its documentation can be accessed directly from the Godot IDE (``F1``).
 
-> Once an add-on is enabled, its documentation can be accessed directly from the IDE (``F1``).
-
+- <img src="https://github.com/ninstar/Godot-NinePatchSprite2D/raw/main/icon.png" width="14px"> **[NinePatchSprite2D](https://github.com/ninstar/Godot-NinePatchSprite2D)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
+- <img src="https://github.com/ninstar/Godot-RangeContainer/raw/main/icon.png" width="14px"> **[RangeContainer](https://github.com/ninstar/Godot-RangeContainer)** - A ScrollContainer that can be controlled by external Range nodes.
+- <img src="https://github.com/ninstar/Godot-RemoteContainer/raw/main/icon.png" width="14px"> **[RemoteContainer](https://github.com/ninstar/Godot-RemoteContainer)** - RemoteContainer pushes its own transform to another Control derived node in the scene.
+- <img src="https://github.com/ninstar/Godot-ResourceOverrider/raw/main/icon.png" width="14px"> **[ResourceOverrider](https://github.com/ninstar/Godot-ResourceOverrider)** - A node that replaces Resources on-the-fly using suffixes.
+- <img src="https://github.com/ninstar/Godot-StateMachineNodes/raw/main/icon.png" width="14px"> **[StateMachine Nodes](https://github.com/ninstar/Godot-StateMachineNodes)** - A set of Finite State Machine nodes for organizing and processing logic.
+- <img src="https://github.com/ninstar/Godot-AudioSyncPlayerNodes/raw/main/icon.png" alt="Icon" width="14px"> **[AudioSyncPlayer Nodes](https://github.com/ninstar/Godot-AudioSyncPlayerNodes)** - A set of Audio Player nodes that can be synchronized.
 
 ## Examples
 
@@ -29,7 +26,8 @@ Every add-on in this repository has an example scene, just open the project in G
 
 <img src="./.github/example.png" alt="Example scene" width="100%">
 
-Most example scenes are self-contained and can be easily transferred to any project.
+> [!Note]
+> All example scenes are self-contained as part of their own submodules and can be easily transferred to any other project.
 
 # Credits
 
