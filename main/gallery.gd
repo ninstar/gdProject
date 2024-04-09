@@ -1,7 +1,7 @@
 extends Node
 
 
-const DEMO := preload("demo.gd")
+const EXAMPLES := preload("examples.gd")
 
 
 @onready var background: ColorRect = $Background
@@ -20,9 +20,9 @@ func _ready() -> void:
 	
 	var popup: PopupMenu = menu.get_popup()
 	popup.index_pressed.connect(_on_menu_index_pressed)
-	var demos := DEMO.new()
+	var examples := EXAMPLES.new()
 	var index: int = 0
-	for dict: Dictionary in demos.get_list():
+	for dict: Dictionary in examples.get_list():
 		popup.add_icon_item(load(dict.get(&"icon", null)), dict.get(&"title", ""), index)
 		popup.set_item_metadata(index, dict.get(&"path", ""))
 		index += 1
@@ -36,7 +36,7 @@ func _on_menu_index_pressed(index: int) -> void:
 	var popup: PopupMenu = menu.get_popup()
 	var path: String = popup.get_item_metadata(index)
 	if not path.is_empty():
-		var scene: PackedScene = load("res://examples/%s/demo.tscn" % path)
+		var scene: PackedScene = load(path)
 		current_demo = scene.instantiate()
 		add_child(current_demo)
 		move_child(current_demo, 1)
