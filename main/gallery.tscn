@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://main/icon.svg" id="3_3a24k"]
 [ext_resource type="Texture2D" uid="uid://cg67vmk8gpd63" path="res://main/opacity.svg" id="4_3smaf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0e5"]
-bg_color = Color(0, 0, 0, 0.501961)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnyj8"]
+bg_color = Color(0.32, 0.32, 0.32, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mn2y5"]
 bg_color = Color(0.3735, 0.586533, 0.83, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnyj8"]
-bg_color = Color(0.32, 0.32, 0.32, 0.501961)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0e5"]
+bg_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdg4m"]
 content_margin_left = 16.0
@@ -21,17 +21,6 @@ content_margin_right = 16.0
 content_margin_bottom = 8.0
 bg_color = Color(0, 0, 0, 0.25098)
 corner_radius_bottom_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryuo6"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.25098)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4esv"]
 content_margin_left = 8.0
@@ -55,6 +44,17 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryuo6"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.25098)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
 [node name="Main" type="Node"]
 script = ExtResource("1_hhu0m")
 
@@ -64,7 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.168627, 0.168627, 0.168627, 0.501961)
+color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 128
@@ -123,9 +123,9 @@ custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 tooltip_text = "Example scenes"
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_bm0e5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wnyj8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bm0e5")
 text = "☰"
 flat = false
 
@@ -161,9 +161,9 @@ layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Transparency"
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_ryuo6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o4esv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7x6t1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ryuo6")
 icon = ExtResource("4_3smaf")
 
 [connection signal="pressed" from="UI/Header/Transparency" to="." method="_on_opacity_pressed"]
