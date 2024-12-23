@@ -31,6 +31,6 @@ Every add-on in this repository has an example scene, just open the project in G
 
 # Credits
 
-- **Code & Resources** - NinStar
+- **Code & Resources** - Ny'hrarr (NinStar)
 
 [home]: https://ninstars.blogspot.com/p/gdproject.html
