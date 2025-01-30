@@ -1,0 +1,61 @@
+
+name: Deploy exported project to GitHub Pages
+
+# When this workflow should be run
+on:
+  push:
+    branches: ["main"]
+
+# Cache imported assets between runs
+cache:
+  key: import-assets
+  paths:
+    - .godot/imported/
+
+# Order of the workflow
+stages:
+  - import-assets
+  - export
+  - deploy
+
+# Workflow variables
+variables:
+  EXPORT_NAME: gdProject-demo
+  PROJECT_PATH: .
+
+# Open the editor to import assets in case the cache was empty or outdated
+import-assets:
+  stage: import-assets
+  script:
+    - godot --headless --verbose --editor --quit
+
+# Export: Web
+web:
+  stage: export
+  script:
+    - mkdir -v -p build/web
+    - EXPORT_DIR="$(readlink -f build)"
+    - cd $PROJECT_PATH
+    - godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - build/web
+
+# GitHub Pages Deploy
+deploy-github-pages:
+  stage: deploy
+  dependencies:
+    - web
+  script:
+    # This ensures the `gh-pages` branch is available.
+    - git fetch
+    - git checkout gh-pages
+    - rm -f *.md
+    - mv build/web/** .
+    - git config user.email $GIT_EMAIL
+    - git config user.name $GIT_USERNAME
+    - git remote add github $REMOTE_URL
+    - git add -A
+    - 'git commit -m "ci: Deploy GitHub Page | $EXPORT_NAME:$CI_JOB_NAME" -m "Deploy from GitLab pipeline #$CI_PIPELINE_ID" || true'
+    - git push github gh-pages -f
