@@ -5,7 +5,12 @@ on:
   push:
     branches:
       - main
-  
+
+env:
+  GODOT_VERSION: 4.3
+  EXPORT_NAME: gdProject
+  PROJECT_PATH: .
+ 
 jobs:
   export-web:
     name: Web Export
