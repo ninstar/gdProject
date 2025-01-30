@@ -9,6 +9,7 @@ const EXAMPLES := preload("examples.gd")
 @onready var menu: MenuButton = $UI/Header/Menu
 @onready var icon: TextureRect = $UI/Header/Demo/Box/Icon
 @onready var title: Label = $UI/Header/Demo/Box/Title
+@onready var transparency_button: Button = $UI/Header/Transparency
 
 var current_demo: Node
 var opacity_tween: Tween
@@ -26,6 +27,8 @@ func _ready() -> void:
 		popup.add_icon_item(load(dict.get(&"icon", null)), dict.get(&"title", ""), index)
 		popup.set_item_metadata(index, dict.get(&"path", ""))
 		index += 1
+	
+	transparency_button.visible = not OS.has_feature("web")
 
 
 func _on_menu_index_pressed(index: int) -> void:
@@ -56,3 +59,4 @@ func _on_opacity_pressed() -> void:
 	
 	opacity_tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	opacity_tween.tween_property(background, ^"color:a", 0.5 if background.color.a > 0.75 else 1.0, 1.0)
+	

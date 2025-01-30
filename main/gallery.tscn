@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpsif74mjwqj8"]
+[gd_scene load_steps=13 format=3 uid="uid://bpsif74mjwqj8"]
 
 [ext_resource type="Script" path="res://main/gallery.gd" id="1_hhu0m"]
 [ext_resource type="Texture2D" uid="uid://cd8fgy1l2gdbk" path="res://main/logo.svg" id="2_abw7f"]
 [ext_resource type="Texture2D" uid="uid://bhwdmdmllp1cn" path="res://main/icon.svg" id="3_3a24k"]
+[ext_resource type="Texture2D" uid="uid://bh2fsgxdol1ax" path="res://main/menu.svg" id="3_l2cob"]
 [ext_resource type="Texture2D" uid="uid://cg67vmk8gpd63" path="res://main/opacity.svg" id="4_3smaf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnyj8"]
@@ -105,10 +106,26 @@ layout_mode = 2
 texture = ExtResource("2_abw7f")
 stretch_mode = 3
 
-[node name="Hint" type="Label" parent="UI/Start/Box"]
+[node name="Hint" type="HBoxContainer" parent="UI/Start/Box"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelL" type="Label" parent="UI/Start/Box/Hint"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Click the ☰ button to select an example scene."
+text = "Click the"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UI/Start/Box/Hint"]
+layout_mode = 2
+texture = ExtResource("3_l2cob")
+stretch_mode = 5
+
+[node name="LabelR" type="Label" parent="UI/Start/Box/Hint"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "button to select an example scene."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,13 +138,15 @@ theme_override_constants/separation = 0
 [node name="Menu" type="MenuButton" parent="UI/Header"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-tooltip_text = "Example scenes"
+tooltip_text = "Examples"
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = SubResource("StyleBoxFlat_wnyj8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bm0e5")
-text = "☰"
+icon = ExtResource("3_l2cob")
 flat = false
+icon_alignment = 1
 
 [node name="Demo" type="PanelContainer" parent="UI/Header"]
 layout_mode = 2
@@ -161,6 +180,7 @@ layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Transparency"
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_o4esv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7x6t1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ryuo6")
