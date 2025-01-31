@@ -5,7 +5,7 @@
 A collection of add-ons for the Godot Engine.
 
 ```bash
-git clone https://github.com/ninstar/gdProject.git
+git clone --recurse-submodules https://github.com/ninstar/gdProject.git
 ```
 
 ## Add-ons
