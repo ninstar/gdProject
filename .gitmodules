@@ -13,6 +13,3 @@
 [submodule ".submodules/state_machine_nodes"]
 	path = .submodules/state_machine_nodes
 	url = https://github.com/ninstar/Godot-StateMachineNodes
-[submodule ".submodules/audio_sync_player_nodes"]
-	path = .submodules/audio_sync_player_nodes
-	url = https://github.com/ninstar/Godot-AudioSyncPlayerNodes
