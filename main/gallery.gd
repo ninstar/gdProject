@@ -9,6 +9,7 @@ const EXAMPLES := preload("examples.gd")
 @onready var menu: MenuButton = $UI/Header/Menu
 @onready var icon: TextureRect = $UI/Header/Demo/Box/Icon
 @onready var title: Label = $UI/Header/Demo/Box/Title
+@onready var hint: Panel = $UI/Header/Demo/Box/Hint
 @onready var transparency_button: Button = $UI/Header/Transparency
 
 var current_demo: Node
@@ -16,9 +17,6 @@ var opacity_tween: Tween
 
 
 func _ready() -> void:
-	var window_title: String = ProjectSettings.get_setting("application/config/name", "")
-	DisplayServer.window_set_title(window_title)
-	
 	var popup: PopupMenu = menu.get_popup()
 	popup.index_pressed.connect(_on_menu_index_pressed)
 	var examples := EXAMPLES.new()
@@ -26,6 +24,7 @@ func _ready() -> void:
 	for dict: Dictionary in examples.get_list():
 		popup.add_icon_item(load(dict.get(&"icon", null)), dict.get(&"title", ""), index)
 		popup.set_item_metadata(index, dict.get(&"path", ""))
+		popup.set_item_tooltip(index, dict.get(&"hint", ""))
 		index += 1
 	
 	transparency_button.visible = not OS.has_feature("web")
@@ -46,9 +45,11 @@ func _on_menu_index_pressed(index: int) -> void:
 	
 	icon.texture = popup.get_item_icon(index)
 	title.text = popup.get_item_text(index)
+	hint.tooltip_text = popup.get_item_tooltip(index)
 	
 	icon.visible = icon != null
 	title.visible = not title.text.is_empty()
+	hint.visible = not hint.tooltip_text.is_empty()
 	
 	start.visible = current_demo == null
 

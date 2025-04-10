@@ -17,6 +17,7 @@ git clone --recurse-submodules https://github.com/ninstar/gdProject.git
 - <img src="https://github.com/ninstar/Godot-RangeContainer/raw/main/icon.png" width="14px"> **[RangeContainer](https://github.com/ninstar/Godot-RangeContainer)** - A ScrollContainer that can be controlled by external Range nodes.
 - <img src="https://github.com/ninstar/Godot-RemoteContainer/raw/main/icon.png" width="14px"> **[RemoteContainer](https://github.com/ninstar/Godot-RemoteContainer)** - RemoteContainer pushes its own transform to another Control derived node in the scene.
 - <img src="https://github.com/ninstar/Godot-ResourceOverrider/raw/main/icon.png" width="14px"> **[ResourceOverrider](https://github.com/ninstar/Godot-ResourceOverrider)** - A node that replaces Resources on-the-fly using suffixes.
+- <img src="https://github.com/ninstar/Godot-IconTexture/raw/main/icon.png" width="14px"> **[IconTexture](https://github.com/ninstar/Godot-IconTexture)** - A texture that draws an icon of a Theme resource.
 - <img src="https://github.com/ninstar/Godot-StateMachineNodes/raw/main/icon.png" width="14px"> **[StateMachine Nodes](https://github.com/ninstar/Godot-StateMachineNodes)** - A set of Finite State Machine nodes for organizing and processing logic.
 
 ## Examples

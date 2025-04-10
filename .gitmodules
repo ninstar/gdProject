@@ -13,3 +13,6 @@
 [submodule ".submodules/state_machine_nodes"]
 	path = .submodules/state_machine_nodes
 	url = https://github.com/ninstar/Godot-StateMachineNodes
+[submodule ".submodules/icon_texture"]
+	path = .submodules/icon_texture
+	url = https://github.com/ninstar/Godot-IconTexture.git
