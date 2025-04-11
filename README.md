@@ -11,7 +11,7 @@ git clone --recurse-submodules https://github.com/ninstar/gdProject.git
 ## Add-ons
 
 > [!TIP]
-> Once an add-on is enabled, its documentation can be accessed directly from the Godot IDE (``F1``).
+> All add-ons have built-in documentation, usage instructions and references can be consulted directly in the Godot editor via the <img src="https://github.com/godotengine/godot/raw/master/editor/icons/HelpSearch.svg" width="16px"> **Search Help** (``F1``).
 
 - <img src="https://github.com/ninstar/Godot-NinePatchSprite2D/raw/main/icon.png" width="14px"> **[NinePatchSprite2D](https://github.com/ninstar/Godot-NinePatchSprite2D)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
 - <img src="https://github.com/ninstar/Godot-RangeContainer/raw/main/icon.png" width="14px"> **[RangeContainer](https://github.com/ninstar/Godot-RangeContainer)** - A ScrollContainer that can be controlled by external Range nodes.
