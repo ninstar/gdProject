@@ -4,14 +4,7 @@
 
 A collection of add-ons for the Godot Engine.
 
-```bash
-git clone --recurse-submodules https://github.com/ninstar/gdProject.git
-```
-
 ## Add-ons
-
-> [!TIP]
-> All add-ons have built-in documentation, usage instructions and references can be consulted directly in the Godot editor via the <img src="https://github.com/godotengine/godot/raw/master/editor/icons/HelpSearch.svg" width="16px"> **Search Help** (``F1``).
 
 - <img src="https://github.com/ninstar/Godot-NinePatchSprite2D/raw/main/icon.png" width="14px"> **[NinePatchSprite2D](https://github.com/ninstar/Godot-NinePatchSprite2D)** - A Node2D that displays a texture by keeping its corners intact, but tiling its edges and center.
 - <img src="https://github.com/ninstar/Godot-RangeContainer/raw/main/icon.png" width="14px"> **[RangeContainer](https://github.com/ninstar/Godot-RangeContainer)** - A ScrollContainer that can be controlled by external Range nodes.
@@ -20,19 +13,25 @@ git clone --recurse-submodules https://github.com/ninstar/gdProject.git
 - <img src="https://github.com/ninstar/Godot-IconTexture/raw/main/icon.png" width="14px"> **[IconTexture](https://github.com/ninstar/Godot-IconTexture)** - A texture that draws an icon of a Theme resource.
 - <img src="https://github.com/ninstar/Godot-StateMachineNodes/raw/main/icon.png" width="14px"> **[StateMachine Nodes](https://github.com/ninstar/Godot-StateMachineNodes)** - A set of Finite State Machine nodes for organizing and processing logic.
 
-## Examples
+> [!NOTE]
+> The add-ons provided in this repository as submodules are always based on their latest versions.
 
-Every add-on in this repository has an example scene, just open the project in Godot and run it (``F5``).
+## Usage
+
+1. Clone the repository and its submodules:
+```bash
+git clone --recurse-submodules https://github.com/ninstar/gdProject.git
+```
+2. Open ``/project.godot`` in Godot and run it.
+3. The ☰ menu provides a list of all available examples that you can choose from.
+    - All examples are self contained and can be easily copied to any other project along with their respective add-ons.
 
 <img src="./.github/example.png" alt="Example scene" width="100%">
-
-> [!IMPORTANT]
-> All example scenes are self-contained as part of their own submodules and can be easily transferred to any other project.
 
 ## Archive
 
 > [!WARNING]
-> The following add-ons are unmaintained and no longer included in gdProject, they have not been tested with newer versions of Godot.
+> The following add-ons are unmaintained and no longer included in the project and have not been tested with newer versions of Godot.
 - <img src="https://github.com/ninstar/Godot-AudioSyncPlayerNodes/raw/main/icon.png" alt="Icon" width="14px"> **[AudioSyncPlayer Nodes](https://github.com/ninstar/Godot-AudioSyncPlayerNodes)** ``Godot 4.2`` - A set of Audio Player nodes that can be synchronized.
 
 
