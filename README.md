@@ -16,6 +16,9 @@ A collection of add-ons for the Godot Engine.
 > [!NOTE]
 > The add-ons provided in this repository as submodules are always based on their latest versions.
 
+<p align="center">You can support my work by purchasing these add-ons:</p>
+<p align="center"><a href="https://ninstars.itch.io/gdproject"><img src="https://static.itch.io/images/badge-color.svg?sanitize=true" alt="Available on itch.io" width="240"></a></p>
+
 ## Usage
 
 1. Clone the repository and its submodules:
