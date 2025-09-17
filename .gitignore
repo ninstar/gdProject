@@ -16,3 +16,4 @@ export.cfg
 .mono/
 data_*/
 mono_crash.*.json
+export_presets.cfg
