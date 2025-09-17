@@ -14,7 +14,7 @@ config/name="gdProject"
 config/description="A collection of add-ons and utilities for Godot."
 config/tags=PackedStringArray("addon", "demo")
 run/main_scene="res://main/gallery.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://main/icon.svg"
 
