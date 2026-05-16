@@ -14,18 +14,18 @@ A collection of add-ons for the Godot Engine.
 - <img src="https://github.com/ninstar/Godot-StateMachineNodes/raw/main/addons/state_machine_nodes/state_machine.svg" width="14px"> **[StateMachine Nodes](https://github.com/ninstar/Godot-StateMachineNodes)** - A set of Finite State Machine nodes for organizing and processing logic.
 
 > [!NOTE]
-> The add-ons provided in this repository as submodules are always based on their latest versions.
+> The add-ons provided in this repository are obtained from commits pushed to their respective ``main`` branches, and not necessarily from the latest release/tags.
 
 <p align="center">You can support my work by purchasing these add-ons:</p>
 <p align="center"><a href="https://ninstars.itch.io/gdproject"><img src="https://static.itch.io/images/badge-color.svg?sanitize=true" alt="Available on itch.io" width="240"></a></p>
 
 ## Usage
 
-1. Clone the repository and its submodules:
+1. Clone the repository:
 ```bash
-git clone --recurse-submodules https://github.com/ninstar/gdProject.git
+git clone https://github.com/ninstar/gdProject.git
 ```
-2. Open ``/project.godot`` in Godot and run it.
+2. Open ``/project.godot`` in Godot (``4.6`` or later), wait until the auto-update check is done and run it.
 3. The ☰ menu provides a list of all available examples that you can choose from.
     - All examples are self contained and can be easily copied to any other project along with their respective add-ons.
 
