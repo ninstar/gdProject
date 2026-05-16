@@ -1,0 +1,425 @@
+[gd_scene load_steps=8 format=3 uid="uid://blh6r78yy4n4x"]
+
+[ext_resource type="Script" uid="uid://b0mb21mp27eyv" path="res://addons/range_container/range_container.gd" id="1_keqt5"]
+[ext_resource type="Texture2D" uid="uid://cuvru6lbda7ps" path="res://examples/range_container/progress.svg" id="2_8du0b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1etd"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qgki"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.160784, 0.376471, 0.596078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rro5x"]
+content_margin_left = 16.0
+color = Color(1, 1, 1, 1)
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipgr5"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwcxb"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0.25098)
+draw_center = false
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Example" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Box" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Left" type="VBoxContainer" parent="Box"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="Box/Left"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1etd")
+text = "RangeContainer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Box/Left"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qgki")
+
+[node name="RangeContainer" type="ScrollContainer" parent="Box/Left/Panel" node_paths=PackedStringArray("shared_vertical_range")]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+scroll_vertical_custom_step = 12.0
+script = ExtResource("1_keqt5")
+shared_vertical_range = [NodePath("../../../Box/Container/Box/Box/VScrollBar"), NodePath("../../../Box/Container/Box/Box/VSlider"), NodePath("../../../Box/Container/Box/Box/TextureProgressBar"), NodePath("../../../Box/Container/Box/HSlider"), NodePath("../../../Box/Container/Box/HScrollBar"), NodePath("../../../Box/Container/Box/SpinBox"), NodePath("../../../Box/Container/Box/ProgressBar")]
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="Box/Left/Panel/RangeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="Box" type="VBoxContainer" parent="Box/Left/Panel/RangeContainer/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label1" type="Label" parent="Box/Left/Panel/RangeContainer/Margin/Box"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxLine_rro5x")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem."
+autowrap_mode = 2
+
+[node name="Letters" type="HFlowContainer" parent="Box/Left/Panel/RangeContainer/Margin/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+last_wrap_alignment = 1
+
+[node name="Button1" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "A"
+
+[node name="Button2" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "B"
+
+[node name="Button3" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "C"
+
+[node name="Button4" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "D"
+
+[node name="Button5" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "E"
+
+[node name="Button6" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "F"
+
+[node name="Button7" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "G"
+
+[node name="Button8" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "H"
+
+[node name="Button9" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "I"
+
+[node name="Button10" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "J"
+
+[node name="Button11" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "K"
+
+[node name="Button12" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "L"
+
+[node name="Button13" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "M"
+
+[node name="Button14" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "N"
+
+[node name="Button15" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "O"
+
+[node name="Button16" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "P"
+
+[node name="Button17" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "Q"
+
+[node name="Button18" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "R"
+
+[node name="Button19" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "S"
+
+[node name="Button20" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "T"
+
+[node name="Button21" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "U"
+
+[node name="Button22" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "V"
+
+[node name="Button23" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "W"
+
+[node name="Button24" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "X"
+
+[node name="Button25" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "Y"
+
+[node name="Button26" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Letters"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "Z"
+
+[node name="Label2" type="Label" parent="Box/Left/Panel/RangeContainer/Margin/Box"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxLine_rro5x")
+text = "Ullus investigandi veri, nisi inveneris, et quaerendi defatigatio turpis est, cum esset accusata et vituperata ab Hortensio. Qui liber cum et mortem contemnit, qua qui est imbutus quietus esse numquam potest. Praeterea bona praeterita grata recordatione renovata delectant. Est autem situm in nobis ut et voluptates et dolores nasci fatemur e corporis."
+autowrap_mode = 2
+
+[node name="Numbers" type="HFlowContainer" parent="Box/Left/Panel/RangeContainer/Margin/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+last_wrap_alignment = 1
+
+[node name="Button1" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "3"
+
+[node name="Button4" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "5"
+
+[node name="Button6" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "6"
+
+[node name="Button7" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "7"
+
+[node name="Button8" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "8"
+
+[node name="Button9" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "9"
+
+[node name="Button10" type="Button" parent="Box/Left/Panel/RangeContainer/Margin/Box/Numbers"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+text = "0"
+
+[node name="Label3" type="Label" parent="Box/Left/Panel/RangeContainer/Margin/Box"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxLine_rro5x")
+text = "Ullus investigandi veri, nisi inveneris, et quaerendi defatigatio turpis est, cum esset accusata et vituperata ab Hortensio. Qui liber cum et mortem contemnit, qua qui est imbutus quietus esse numquam potest. Praeterea bona praeterita grata recordatione renovata delectant. Est autem situm in nobis ut et voluptates et dolores nasci fatemur e corporis voluptatibus et doloribus -- itaque concedo."
+autowrap_mode = 2
+
+[node name="Box" type="VBoxContainer" parent="Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Box/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ipgr5")
+text = "Range Nodes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="PanelContainer" parent="Box/Box"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nwcxb")
+
+[node name="Box" type="VBoxContainer" parent="Box/Box/Container"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Box" type="HBoxContainer" parent="Box/Box/Container/Box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="VScrollBar" type="VScrollBar" parent="Box/Box/Container/Box/Box"]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+max_value = 1261.0
+page = 392.0
+custom_step = 12.0
+
+[node name="VSlider" type="VSlider" parent="Box/Box/Container/Box/Box"]
+layout_mode = 2
+max_value = 869.0
+step = 12.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Box/Box/Container/Box/Box"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+max_value = 869.0
+step = 0.0
+fill_mode = 4
+texture_under = ExtResource("2_8du0b")
+texture_progress = ExtResource("2_8du0b")
+tint_under = Color(0.1, 0.1, 0.1, 0.25098)
+
+[node name="HSlider" type="HSlider" parent="Box/Box/Container/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+max_value = 869.0
+step = 12.0
+
+[node name="HScrollBar" type="HScrollBar" parent="Box/Box/Container/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_mode = 2
+max_value = 1261.0
+page = 392.0
+custom_step = 12.0
+
+[node name="SpinBox" type="SpinBox" parent="Box/Box/Container/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 869.0
+step = 12.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Box/Box/Container/Box"]
+layout_mode = 2
+max_value = 869.0
+step = 0.0
+
+[connection signal="ready" from="Box/Left/Panel/RangeContainer/Margin/Box/Numbers/Button1" to="Box/Left/Panel/RangeContainer/Margin/Box/Numbers/Button1" method="grab_focus"]

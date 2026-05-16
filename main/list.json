@@ -1,0 +1,32 @@
+[
+	{
+		"config": "res://addons/nine_patch_sprite_2d/plugin.cfg",
+		"icon": "res://addons/nine_patch_sprite_2d/nine_patch_sprite_2d.svg",
+		"scene": "res://examples/nine_patch_sprite_2d/scene.tscn"
+	},
+	{
+		"config": "res://addons/range_container/plugin.cfg",
+		"icon": "res://addons/range_container/range_container.svg",
+		"scene": "res://examples/range_container/scene.tscn"
+	},
+	{
+		"config": "res://addons/remote_container/plugin.cfg",
+		"icon": "res://addons/remote_container/remote_container.svg",
+		"scene": "res://examples/remote_container/scene.tscn"
+	},
+	{
+		"config": "res://addons/resource_overrider/plugin.cfg",
+		"icon": "res://addons/resource_overrider/resource_overrider.svg",
+		"scene": "res://examples/resource_overrider/scene.tscn"
+	},
+	{
+		"config": "res://addons/icon_texture/plugin.cfg",
+		"icon": "res://addons/icon_texture/icon_texture.svg",
+		"scene": "res://examples/icon_texture/scene.tscn"
+	},
+	{
+		"config": "res://addons/state_machine_nodes/plugin.cfg",
+		"icon": "res://addons/state_machine_nodes/state_machine.svg",
+		"scene": "res://examples/state_machine_nodes/scene.tscn"
+	}
+]

@@ -29,7 +29,7 @@ window/per_pixel_transparency/allowed=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/_updater/plugin.cfg")
+enabled=PackedStringArray("res://addons/_updater/plugin.cfg", "res://addons/icon_texture/plugin.cfg", "res://addons/nine_patch_sprite_2d/plugin.cfg", "res://addons/range_container/plugin.cfg", "res://addons/remote_container/plugin.cfg", "res://addons/resource_overrider/plugin.cfg", "res://addons/state_machine_nodes/plugin.cfg")
 
 [filesystem]
 

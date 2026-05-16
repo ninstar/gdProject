@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://du2ujc4aiqlls"]
+
+[ext_resource type="Script" uid="uid://dog7l0oedqlns" path="res://addons/icon_texture/dialog.gd" id="1_ijosl"]
+
+[node name="Picker" type="AcceptDialog" unique_id=551420958]
+oversampling_override = 1.0
+title = "Icons"
+initial_position = 4
+size = Vector2i(512, 512)
+visible = true
+ok_button_text = "Select"
+script = ExtResource("1_ijosl")
+
+[node name="Box" type="VBoxContainer" parent="." unique_id=470917634]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Filter" type="HBoxContainer" parent="Box" unique_id=1270644985]
+layout_mode = 2
+
+[node name="ThemeFilters" type="MenuButton" parent="Box/Filter" unique_id=1123235293]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Theme"
+item_count = 3
+popup/item_0/text = "Theme Resource"
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+popup/item_1/text = "Project theme"
+popup/item_1/checkable = 1
+popup/item_1/checked = true
+popup/item_1/id = 1
+popup/item_2/text = "Default theme"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+
+[node name="Separator" type="VSeparator" parent="Box/Filter" unique_id=2049634846]
+layout_mode = 2
+
+[node name="Type" type="Label" parent="Box/Filter" unique_id=310888395]
+visible = false
+layout_mode = 2
+text = "Type:"
+
+[node name="TypeList" type="OptionButton" parent="Box/Filter" unique_id=549484257]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "All"
+popup/item_0/id = 0
+
+[node name="Search" type="LineEdit" parent="Box/Filter" unique_id=367201472]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filter by Name"
+clear_button_enabled = true
+
+[node name="IconList" type="ItemList" parent="Box" unique_id=1845310169]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+max_columns = 0
+same_column_width = true
+fixed_icon_size = Vector2i(24, 24)
+
+[node name="NoResults" type="Label" parent="Box/IconList" unique_id=649560274]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderMedium"
+text = "No icons found."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Tools" type="HBoxContainer" parent="Box" unique_id=1633880421]
+layout_mode = 2
+
+[node name="Count" type="Label" parent="Box/Tools" unique_id=1953341196]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderMedium"
+text = "--- Icon(s)"
+text_overrun_behavior = 3
+
+[node name="SizeBox" type="SpinBox" parent="Box/Tools" unique_id=1328143812]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+tooltip_text = "Size"
+min_value = 16.0
+max_value = 128.0
+value = 32.0
+alignment = 1
+prefix = "32 x"
+suffix = "px"
+custom_arrow_step = 8.0
+
+[node name="TextureFilter" type="Button" parent="Box/Tools" unique_id=905068264]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+icon_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Box/Tools" unique_id=565924395]
+layout_mode = 2
+
+[node name="ViewMode" type="Button" parent="Box/Tools" unique_id=219873615]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"FlatButton"
+icon_alignment = 1
+
+[node name="ContextMenu" type="PopupMenu" parent="." unique_id=1886824212]
+oversampling_override = 1.0
+
+[connection signal="confirmed" from="." to="." method="confirm_selection"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="item_selected" from="Box/Filter/TypeList" to="." method="update_icon_list" unbinds=1]
+[connection signal="text_changed" from="Box/Filter/Search" to="." method="update_icon_list" unbinds=1]
+[connection signal="item_activated" from="Box/IconList" to="." method="confirm_selection" unbinds=1]
+[connection signal="item_activated" from="Box/IconList" to="." method="hide" unbinds=1]
+[connection signal="item_clicked" from="Box/IconList" to="." method="_on_icon_list_item_clicked"]
+[connection signal="item_selected" from="Box/IconList" to="." method="update_ok_button" unbinds=1]
+[connection signal="value_changed" from="Box/Tools/SizeBox" to="." method="update_icon_list" unbinds=1]
+[connection signal="pressed" from="Box/Tools/TextureFilter" to="." method="_on_texture_filter_pressed"]
+[connection signal="pressed" from="Box/Tools/ViewMode" to="." method="_on_view_mode_pressed"]
+[connection signal="index_pressed" from="ContextMenu" to="." method="_on_context_menu_index_pressed"]
