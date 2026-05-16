@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dw6vxl76vg377"]
+
+[ext_resource type="Script" uid="uid://d0lst1ke1mob6" path="res://addons/_updater/progress.gd" id="1_fiwym"]
+
+[node name="Progress" type="AcceptDialog" unique_id=449436131]
+oversampling_override = 1.0
+title = "gdProject"
+initial_position = 1
+size = Vector2i(512, 144)
+visible = true
+min_size = Vector2i(320, 144)
+max_size = Vector2i(16384, 144)
+ok_button_text = "Cancel"
+dialog_close_on_escape = false
+script = ExtResource("1_fiwym")
+
+[node name="Box" type="VBoxContainer" parent="." unique_id=592133088]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Box" unique_id=2134127386]
+layout_mode = 2
+text = "..."
+
+[node name="Bar" type="ProgressBar" parent="Box" unique_id=1643820298]
+layout_mode = 2
+indeterminate = true
+editor_preview_indeterminate = false

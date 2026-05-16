@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dr0dv6h8nc1si"]
+
+[ext_resource type="Script" uid="uid://cfxocv3vf2rlg" path="res://addons/_updater/confirmation.gd" id="1_87es4"]
+
+[node name="Confirmation" type="ConfirmationDialog" unique_id=1891512166]
+oversampling_override = 1.0
+title = "gdProject"
+initial_position = 1
+size = Vector2i(440, 240)
+visible = true
+min_size = Vector2i(440, 240)
+ok_button_text = "Update Now"
+script = ExtResource("1_87es4")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=792043078]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "The following add-ons have a new version available:
+
+%s
+
+[b]Note[/b]: The update process will replace any changes you may have made to the add-ons locally within gdProject."
+fit_content = true
