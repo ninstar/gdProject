@@ -1,33 +1,36 @@
 extends Node
 
 
-const EXAMPLES := preload("examples.gd")
+const LIST_JSON = "res://main/list.json"
 
+
+var current_demo: Node
+var opacity_tween: Tween
 
 @onready var background: ColorRect = $Background
 @onready var start: Control = $UI/Start
 @onready var menu: MenuButton = $UI/Header/Menu
 @onready var icon: TextureRect = $UI/Header/Demo/Box/Icon
 @onready var title: Label = $UI/Header/Demo/Box/Title
-@onready var hint: Panel = $UI/Header/Demo/Box/Hint
 @onready var transparency_button: Button = $UI/Header/Transparency
-
-var current_demo: Node
-var opacity_tween: Tween
 
 
 func _ready() -> void:
 	var popup: PopupMenu = menu.get_popup()
 	popup.index_pressed.connect(_on_menu_index_pressed)
-	var examples := EXAMPLES.new()
-	var index: int = 0
-	for dict: Dictionary in examples.get_list():
-		popup.add_icon_item(load(dict.get(&"icon", null)), dict.get(&"title", ""), index)
-		popup.set_item_metadata(index, dict.get(&"path", ""))
-		popup.set_item_tooltip(index, dict.get(&"hint", ""))
-		index += 1
 	
-	transparency_button.visible = not OS.has_feature("web")
+	if FileAccess.file_exists(LIST_JSON):
+		var list: Array = JSON.parse_string(FileAccess.get_file_as_string(LIST_JSON))
+		
+		var index: int = 0
+		for dict: Dictionary in list:
+			if FileAccess.file_exists(dict["config"]) and FileAccess.file_exists(dict["scene"]):
+				var config = ConfigFile.new()
+				config.load(dict["config"])
+				popup.add_icon_item(load(dict["icon"]), config.get_value("plugin", "name", ""), index)
+				popup.set_item_tooltip(index, config.get_value("plugin", "description", ""))
+				popup.set_item_metadata(index, dict["scene"])
+				index += 1
 
 
 func _on_menu_index_pressed(index: int) -> void:
@@ -45,11 +48,9 @@ func _on_menu_index_pressed(index: int) -> void:
 	
 	icon.texture = popup.get_item_icon(index)
 	title.text = popup.get_item_text(index)
-	hint.tooltip_text = popup.get_item_tooltip(index)
 	
 	icon.visible = icon != null
 	title.visible = not title.text.is_empty()
-	hint.visible = not hint.tooltip_text.is_empty()
 	
 	start.visible = current_demo == null
 
@@ -60,4 +61,3 @@ func _on_opacity_pressed() -> void:
 	
 	opacity_tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	opacity_tween.tween_property(background, ^"color:a", 0.5 if background.color.a > 0.75 else 1.0, 1.0)
-	

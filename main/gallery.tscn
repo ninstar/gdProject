@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpsif74mjwqj8"]
+[gd_scene format=3 uid="uid://bpsif74mjwqj8"]
 
 [ext_resource type="Script" uid="uid://c2sgi81m1e3mu" path="res://main/gallery.gd" id="1_hhu0m"]
 [ext_resource type="Texture2D" uid="uid://cd8fgy1l2gdbk" path="res://main/logo.svg" id="2_abw7f"]
@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bh2fsgxdol1ax" path="res://main/menu.svg" id="3_l2cob"]
 [ext_resource type="Texture2D" uid="uid://cg67vmk8gpd63" path="res://main/opacity.svg" id="4_3smaf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnyj8"]
-bg_color = Color(0.32, 0.32, 0.32, 0.501961)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0e5"]
+bg_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mn2y5"]
 bg_color = Color(0.3735, 0.586533, 0.83, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0e5"]
-bg_color = Color(0, 0, 0, 0.501961)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnyj8"]
+bg_color = Color(0.32, 0.32, 0.32, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdg4m"]
 content_margin_left = 16.0
@@ -23,19 +23,12 @@ content_margin_bottom = 8.0
 bg_color = Color(0, 0, 0, 0.25098)
 corner_radius_bottom_right = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xm6u5"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4esv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryuo6"]
 content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
-bg_color = Color(0.32, 0.32, 0.32, 0.501961)
+bg_color = Color(0, 0, 0, 0.25098)
 corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
@@ -52,21 +45,21 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryuo6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4esv"]
 content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.25098)
+bg_color = Color(0.32, 0.32, 0.32, 0.501961)
 corner_radius_top_left = 64
 corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=368657739]
 script = ExtResource("1_hhu0m")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=795383927]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,10 +67,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.168627, 0.168627, 0.168627, 1)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=417103275]
 layer = 128
 
-[node name="Start" type="Control" parent="UI"]
+[node name="Start" type="Control" parent="UI" unique_id=338235530]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Box" type="VBoxContainer" parent="UI/Start"]
+[node name="Box" type="VBoxContainer" parent="UI/Start" unique_id=1185088026]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,69 +94,69 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Greetings" type="Label" parent="UI/Start/Box"]
+[node name="Greetings" type="Label" parent="UI/Start/Box" unique_id=1607574513]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "- Welcome to -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Logo" type="TextureRect" parent="UI/Start/Box"]
+[node name="Logo" type="TextureRect" parent="UI/Start/Box" unique_id=1910995671]
 layout_mode = 2
 texture = ExtResource("2_abw7f")
 stretch_mode = 3
 
-[node name="Hint" type="HBoxContainer" parent="UI/Start/Box"]
+[node name="Hint" type="HBoxContainer" parent="UI/Start/Box" unique_id=794996511]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="LabelL" type="Label" parent="UI/Start/Box/Hint"]
+[node name="LabelL" type="Label" parent="UI/Start/Box/Hint" unique_id=530327904]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Click the"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="UI/Start/Box/Hint"]
+[node name="Icon" type="TextureRect" parent="UI/Start/Box/Hint" unique_id=1877636316]
 layout_mode = 2
 texture = ExtResource("3_l2cob")
 stretch_mode = 5
 
-[node name="LabelR" type="Label" parent="UI/Start/Box/Hint"]
+[node name="LabelR" type="Label" parent="UI/Start/Box/Hint" unique_id=973873054]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "button to select an example scene."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Header" type="HBoxContainer" parent="UI"]
+[node name="Header" type="HBoxContainer" parent="UI" unique_id=1324592064]
 custom_minimum_size = Vector2(64, 48)
 offset_right = 225.0
 offset_bottom = 48.0
 theme_override_constants/separation = 0
 
-[node name="Menu" type="MenuButton" parent="UI/Header"]
+[node name="Menu" type="MenuButton" parent="UI/Header" unique_id=2042100486]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 tooltip_text = "Examples"
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = SubResource("StyleBoxFlat_wnyj8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bm0e5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mn2y5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wnyj8")
 icon = ExtResource("3_l2cob")
 flat = false
 icon_alignment = 1
 
-[node name="Demo" type="PanelContainer" parent="UI/Header"]
+[node name="Demo" type="PanelContainer" parent="UI/Header" unique_id=1790121491]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kdg4m")
 
-[node name="Box" type="HBoxContainer" parent="UI/Header/Demo"]
+[node name="Box" type="HBoxContainer" parent="UI/Header/Demo" unique_id=1105857573]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Icon" type="TextureRect" parent="UI/Header/Demo/Box"]
+[node name="Icon" type="TextureRect" parent="UI/Header/Demo/Box" unique_id=100764469]
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -171,57 +164,26 @@ size_flags_vertical = 4
 texture = ExtResource("3_3a24k")
 expand_mode = 1
 
-[node name="Title" type="Label" parent="UI/Header/Demo/Box"]
+[node name="Title" type="Label" parent="UI/Header/Demo/Box" unique_id=908639395]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Demo"
 
-[node name="Padding" type="Control" parent="UI/Header/Demo/Box"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-
-[node name="Hint" type="Panel" parent="UI/Header/Demo/Box"]
-visible = false
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_xm6u5")
-
-[node name="Label" type="Label" parent="UI/Header/Demo/Box/Hint"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -3.0
-offset_top = -11.5
-offset_right = 5.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.16, 0.16, 0.16, 1)
-theme_override_font_sizes/font_size = 14
-text = "?"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Padding" type="Control" parent="UI/Header"]
+[node name="Padding" type="Control" parent="UI/Header" unique_id=455333746]
 custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Transparency" type="Button" parent="UI/Header"]
+[node name="Transparency" type="Button" parent="UI/Header" unique_id=1411545670]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Transparency"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_o4esv")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7x6t1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ryuo6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7x6t1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4esv")
 icon = ExtResource("4_3smaf")
 
 [connection signal="pressed" from="UI/Header/Transparency" to="." method="_on_opacity_pressed"]
